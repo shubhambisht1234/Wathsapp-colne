@@ -29,7 +29,7 @@ export default function Header() {
   return (
     <>
       <InfoDrawer
-        UsrProfile={account?.picture}
+        account={account}
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
       />

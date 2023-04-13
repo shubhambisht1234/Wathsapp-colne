@@ -5,7 +5,7 @@ import React from "react";
 import { AllTextContainer } from "../../../../constant/AllTextContainer";
 import AvatarComponent from "../../../../genericComponent/Avatar";
 
-export default function InfoDrawer({ UsrProfile, openDrawer, setOpenDrawer }) {
+export default function InfoDrawer({ account, openDrawer, setOpenDrawer }) {
   const DrawerStyle = {
     left: 30,
     top: 30,
@@ -39,13 +39,20 @@ export default function InfoDrawer({ UsrProfile, openDrawer, setOpenDrawer }) {
   `;
   const Container = styled(Box)`
     background: #ffffff;
-    height: 80px;
+    // height: 80px;
+    padding: 15px 17px;
+    & :first-child {
+      color: #008069;
+    }
   `;
 
   const TextContainer = styled(Box)`
     height: 80px;
-
-    // background: red;
+    & > p {
+      color: #667781;
+      font-size: 13px;
+      padding: 22px 20px;
+    }
   `;
   return (
     <>
@@ -67,15 +74,24 @@ export default function InfoDrawer({ UsrProfile, openDrawer, setOpenDrawer }) {
           <Box>
             <UserProfile>
               {/* <UserProfile src={UsrProfile} /> */}
-              <AvatarComponent styledName={styledName} src={UsrProfile} />
+              <AvatarComponent styledName={styledName} src={account?.picture} />
             </UserProfile>
-            <Container></Container>
+            <Container>
+              <Typography>Your Name</Typography>
+              <Typography>{account?.name}</Typography>
+            </Container>
             <TextContainer>
               <Typography>
                 This is not your username or pin. This name will be visible to
                 your WhatsApp contacts.
               </Typography>
             </TextContainer>
+            <Container>
+              <Typography>About</Typography>
+              <Typography>
+                Ability is limitless.. 💪🏻 do more. Be more... 🔥
+              </Typography>
+            </Container>
           </Box>
         </Box>
       </SwipeableDrawer>
