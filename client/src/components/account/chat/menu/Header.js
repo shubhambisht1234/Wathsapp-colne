@@ -25,7 +25,6 @@ export default function Header() {
     width: 111px;
     justify-content: space-between;
   `;
-  // console.log(openDrawer, "openDrawer");
   return (
     <>
       <InfoDrawer

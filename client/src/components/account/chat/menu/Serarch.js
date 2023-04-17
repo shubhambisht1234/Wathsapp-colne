@@ -3,6 +3,7 @@ import { Box, InputBase, TextField } from "@mui/material";
 import React from "react";
 import { Search as SearchIcon } from "@mui/icons-material";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import InputField from "../../../../genericComponent/inputfield";
 export default function Serarch() {
   const Container = styled(Box)`
     display: flex;
@@ -31,7 +32,7 @@ export default function Serarch() {
           <Icon>
             <SearchIcon />
           </Icon>
-          <InputBase placeholder="Search or start new chat" />
+          <InputField placeholder={"Search or start new chat"} />
         </Wrapper>
         <Box>
           <FilterListIcon />

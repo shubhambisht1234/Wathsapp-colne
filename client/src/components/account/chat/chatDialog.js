@@ -1,8 +1,10 @@
 import { Box, Dialog, styled } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Menu from "./menu/menu";
 import EmptyChat from "./chat/EmptyChat";
 import Serarch from "./menu/Serarch";
+import ChatBox from "./chat/ChatBox";
+import WathsappIcon from "../../../assets/images/WathsappImage.jpg";
 
 const dialogStyle = {
   height: "100%",
@@ -19,26 +21,33 @@ const Component = styled(Box)`
 const LeftContainer = styled(Box)`
   width: 450px;
   height: 90vh;
-  // background: red;
 `;
 const RightContainer = styled(Box)`
   min-width: 70%;
-  background: #f9f8f9;
+  background: ${(props) =>
+    props?.color ? ` url(${WathsappIcon})` : "#f9f8f9"};
 `;
 export default function ChatDialog() {
+  const [chatListOpen, setChatListOpen] = useState({
+    condition: false,
+    userData: null,
+  });
   return (
     <>
       <Dialog open={true} PaperProps={{ sx: dialogStyle }} hideBackdrop={true}>
         <Component>
           <LeftContainer>
-            <Menu />
-            <Serarch />
+            <Menu setChatListOpen={setChatListOpen} />
           </LeftContainer>
-          <RightContainer>
-            <EmptyChat />
+          <RightContainer color={chatListOpen?.condition}>
+            {chatListOpen?.condition ? (
+              <ChatBox userData={chatListOpen?.userData} />
+            ) : (
+              <EmptyChat />
+            )}
           </RightContainer>
         </Component>
-        {/* <FutterVideo></FutterVideo>  */}
+        {/* <FutterVideo></FutterVideo> */}
       </Dialog>
     </>
   );
