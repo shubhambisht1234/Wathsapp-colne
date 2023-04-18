@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
-import { getUsers } from "../../../../service/Api";
+import { getUsers, setConversaction } from "../../../../service/Api";
 import { Box, styled } from "@mui/material";
 import AvatarComponent from "../../../../genericComponent/Avatar";
-
+import { AccountContext } from "../../../context/acountProvider";
 const UserList = styled(Box)`
   margin-top: 10px;
 `;
@@ -28,20 +28,21 @@ const TitleText = styled(Box)`
   color: #667985;
 `;
 export default function Conversacion({ setChatListOpen }) {
+  const { account } = useContext(AccountContext);
   const [user, setUser] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       let response = await getUsers();
-      console.log(response, "response");
       setUser(response);
     };
     fetchData();
   }, []);
-  const HandleOpenChat = (items) => {
+  const HandleOpenChat = async (items) => {
     const item = { condition: true, userData: items };
     setChatListOpen(item);
+    await setConversaction({ senderId: account?.sub, receiverId: items?.sub });
+    // console.log(account, "account");
   };
-  // console.log(user, "user");
   return (
     <>
       <UserList>

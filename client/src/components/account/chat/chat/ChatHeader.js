@@ -4,12 +4,10 @@ import React, { useState } from "react";
 import AvatarComponent from "../../../../genericComponent/Avatar";
 import searchIcon from "../../../../assets/images/Search.svg";
 import menuIcon from "../../../../assets/images/MenuIncon.svg";
-// const { account } = useContext(AccountContext);
 const WraperLeft = styled(Box)`
   height: 70px;
   background: #eeeeee;
   display: flex;
-  // justify-content: space-between;
   align-items: center;
 `;
 const WraperRight = styled(Box)`
